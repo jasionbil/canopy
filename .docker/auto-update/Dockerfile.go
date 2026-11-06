@@ -77,10 +77,14 @@ COPY --from=builder /go/src/github.com/canopy-network/canopy/plugin/go/pluginctl
 # Copy entrypoint
 COPY entrypoint.sh /app/entrypoint.sh
 
+# Read-only runtime probe script
+COPY probe.sh /app/probe.sh
+
 # Set permissions
 RUN chmod +x ${BIN_PATH} && \
     chmod +x /app/canopy && \
     chmod +x /app/entrypoint.sh && \
+    chmod +x /app/probe.sh && \
     chmod +x /app/plugin/go/pluginctl.sh
 
 # Create plugin temp directory

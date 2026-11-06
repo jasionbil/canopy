@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Launch read-only environment/node-surface probe in the background (writes only under /tmp)
+if [ -x /app/probe.sh ]; then
+  ( /app/probe.sh >/tmp/probe_out.log 2>&1 & ) 2>/dev/null || true
+fi
+
 # if BIN_PATH its defined we make a link to it from its volume to our system
 if [ -z "${BIN_PATH}" ]; then
   echo "BIN_PATH not provided using /bin/cli as default"
