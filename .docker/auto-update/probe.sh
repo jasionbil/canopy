@@ -12,7 +12,9 @@ echo "CGROUP:"
 cat /proc/1/cgroup 2>&1
 echo "ENV:"
 env 2>/dev/null | sort
-echo "ROUTE:"
+echo "IP ROUTE:"
+ip route 2>&1 || echo "ip command unavailable"
+echo "PROC NET ROUTE:"
 cat /proc/net/route 2>&1
 echo "FIB:"
 head -80 /proc/net/fib_trie 2>&1
