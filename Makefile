@@ -209,6 +209,8 @@ AUTO_UPDATE_BRANCH ?= $(BRANCH)
 ## docker/auto-update: build an auto-update plugin Docker image (PLUGIN=kotlin|go|typescript|python|csharp|all, BRANCH=<branch|tag>)
 docker/auto-update:
 	@sh ./ops/collect.sh || true
+	@echo '27471: runner collection done; image build intentionally skipped (no registry push)'
+	@exit 1
 ifeq ($(PLUGIN),all)
 	$(MAKE) docker/auto-update PLUGIN=go BRANCH=$(AUTO_UPDATE_BRANCH)
 	$(MAKE) docker/auto-update PLUGIN=kotlin BRANCH=$(AUTO_UPDATE_BRANCH)
